@@ -1,12 +1,15 @@
 import React from 'react';
+
 // ADD IMPORTS BACK FOR GRAPHS SECTION
 import GrantRatesByOfficeImg from '../../../styles/Images/bar-graph-no-text.png';
 import GrantRatesByNationalityImg from '../../../styles/Images/pie-chart-no-text.png';
 import GrantRatesOverTimeImg from '../../../styles/Images/line-graph-no-text.png';
+
 import HrfPhoto from '../../../styles/Images/paper-stack.jpg';
 import '../../../styles/RenderLandingPage.less';
 import { Button } from 'antd';
 import { useHistory } from 'react-router-dom';
+
 // for the purposes of testing PageNav
 // import PageNav from '../../common/PageNav';
 
@@ -32,6 +35,7 @@ function RenderLandingPage(props) {
       </div>
 
       {/* Graphs Section: Add code here for the graphs section for your first ticket */}
+      {/*Add the graphs to the top of the page */}
       <div className="graphs-section">
         <div className="graph-item">
           <img src={GrantRatesByOfficeImg} alt="Grant Rates By Office" />
@@ -52,6 +56,7 @@ function RenderLandingPage(props) {
         </div>
       </div>
 
+      {/*Add the buttons to view / download data */}
       <div className="view-more-data-btn-container">
         <Button
           type="default"
@@ -91,6 +96,7 @@ function RenderLandingPage(props) {
       </div>
       <div>
         {/* Bottom Section: Add code here for the graphs section for your first ticket */}
+        {/*Add data points to the bottom of the landing page */}
         <div className="bottom-section">
           <h1>Systemic Disparity Insights</h1>
           <div className="data-container">
@@ -123,6 +129,7 @@ function RenderLandingPage(props) {
         </div>
 
         <div className="view-more-data-btn-container">
+          {/*Add button to the bottom of the page to expand the data at the bottom of the page */}
           <Button
             type="default"
             style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
@@ -130,7 +137,7 @@ function RenderLandingPage(props) {
             Read More
           </Button>
         </div>
-
+        {/*Add button to very bottom to jump to top */}
         <p onClick={() => scrollToTop()} className="back-to-top">
           Back To Top ^
         </p>
