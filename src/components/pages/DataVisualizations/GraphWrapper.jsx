@@ -10,7 +10,8 @@ import YearLimitsSelect from './YearLimitsSelect';
 import ViewSelect from './ViewSelect';
 import axios from 'axios';
 import { resetVisualizationQuery } from '../../../state/actionCreators';
-// import test_data from '../../../data/test_data.json';  comment out unused test data import
+// import test_data from '../../../data/test_data.json';
+// comment out unused test data import
 import { colors } from '../../../styles/data_vis_colors';
 import ScrollToTopOnMount from '../../../utils/scrollToTopOnMount';
 
@@ -134,7 +135,7 @@ function GraphWrapper(props) {
       }),
     ])
       .then(([fiscalCall, citizenCall]) => {
-        // handle parallel requests and handle response together
+        // handle both requests and handle response together
         const fiscalData = fiscalCall.data.yearResults;
         const citizenshipData = citizenCall.data;
         const combinedData = [{ fiscalData, citizenshipData }];
