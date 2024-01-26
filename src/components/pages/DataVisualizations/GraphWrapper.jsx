@@ -50,8 +50,14 @@ function GraphWrapper(props) {
         break;
     }
   }
-  function updateStateWithNewData(years, view, office, stateSettingCallback) {
+  async function updateStateWithNewData(
+    years,
+    view,
+    office,
+    stateSettingCallback
+  ) {
     const apiUrl = 'https://hrf-asylum-be-b.herokuapp.com/cases';
+    // declare url once to make easier to manage and update
 
     /*
           _                                                                             _
@@ -74,95 +80,71 @@ function GraphWrapper(props) {
                                    -- Mack 
     
     */
+    /*
+        if (office === 'all' || !office) {
+          axios
+            .get(`${apiUrl}/fiscalSummary`, {
+              //added correct url for fical summary
+              // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
+              params: {
+                from: years[0],
+                to: years[1],
+              },
+            })
+            .then(result => {
+              stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
+            })
+            .catch(err => {
+              console.error(err);
+            });
+        } else {
+          axios
+            .get(`${apiUrl}/citizenshipSummary`, {
+              // added correct url for citizenship summery
+              // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
+              params: {
+                from: years[0],
+                to: years[1],
+                office: office,
+              },
+            })
+            .then(result => {
+              stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
+            })
+            .catch(err => {
+              console.error(err);
+            });
+        }
+      }
+      */
+    Promise.all([
+      await axios.get(`${apiUrl}/fiscalSummary`, {
+        params: {
+          from: years[0],
+          to: years[1],
+        },
+      }),
 
-    if (office === 'all' || !office) {
-      axios
-        .get(`${apiUrl}/fiscalSummary`, {
-          //added correct url for fical summary
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-          },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    } else {
-      axios
-        .get(`${apiUrl}/citizenshipSummary`, {
-          // added correct url for citizenship summery
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-            office: office,
-          },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    }
+      await axios.get(`${apiUrl}/citizenshipSummary`, {
+        params: {
+          from: years[0],
+          to: years[1],
+          office: office,
+        },
+      }),
+    ])
+      .then(([fiscalCall, citizenCall]) => {
+        // handle parallel requests and handle response together
+        const fiscalData = fiscalCall.data.yearResults;
+        const citizenshipData = citizenCall.data;
+        const combinedData = [{ fiscalData, citizenshipData }];
+
+        stateSettingCallback(view, office, [combinedData][0]);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
-  /*
-  const fiscalRequest = axios.get(`${apiUrl}/fiscalSummary`, {
-    params: {
-      from: years[0],
-      to: years[1],
-    },
-  });
-
-  const citizenshipRequest = axios.get(`${apiUrl}/citizenshipSummary`, {
-    params: {
-      from: years[0],
-      to: years[1],
-      office: office,
-    },
-  });
-
-  axios.all([fiscalRequest, citizenshipRequest])
-    .then(axios.spread((fiscalResult, citizenshipResult) => {
-      const fiscalData = fiscalResult.data;
-      const citizenshipData = citizenshipResult.data;
-
-      const combinedData = combineData(fiscalData, citizenshipData);
-
-      stateSettingCallback(view, office, combinedData);
-    }))
-    .catch(err => {
-      console.error(err);
-    });
-}
-
-const combineData = (fiscalData, citizenshipData) => {
-  const combinedData = [];
-
-  fiscalData.forEach(fiscalItem => {
-    const citizenshipItem = citizenshipData.find(item => item.fiscal_year === fiscalItem.fiscal_year);
-
-    if (citizenshipItem) {
-      const combinedItem = {
-        fiscal_year: fiscalItem.fiscal_year,
-        fiscal_granted: fiscalItem.granted,
-        fiscal_denied: fiscalItem.denied,
-        citizenship_granted: citizenshipItem.granted,
-        citizenship_denied: citizenshipItem.denied,
-        // Add more properties as needed
-      };
-
-      combinedData.push(combinedItem);
-    }
-  });
-
-  return combinedData;
-};
-*/
 
   const clearQuery = (view, office) => {
     dispatch(resetVisualizationQuery(view, office));
