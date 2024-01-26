@@ -52,6 +52,7 @@ function GraphWrapper(props) {
   }
   function updateStateWithNewData(years, view, office, stateSettingCallback) {
     const apiUrl = 'https://hrf-asylum-be-b.herokuapp.com/cases';
+
     /*
           _                                                                             _
         |                                                                                 |
@@ -76,8 +77,8 @@ function GraphWrapper(props) {
 
     if (office === 'all' || !office) {
       axios
-        .get(apiUrl, {
-          //added correct url
+        .get(`${apiUrl}/fiscalSummary`, {
+          //added correct url for fical summary
           // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
           params: {
             from: years[0],
@@ -109,6 +110,60 @@ function GraphWrapper(props) {
         });
     }
   }
+  /*
+  const fiscalRequest = axios.get(`${apiUrl}/fiscalSummary`, {
+    params: {
+      from: years[0],
+      to: years[1],
+    },
+  });
+
+  const citizenshipRequest = axios.get(`${apiUrl}/citizenshipSummary`, {
+    params: {
+      from: years[0],
+      to: years[1],
+      office: office,
+    },
+  });
+
+  axios.all([fiscalRequest, citizenshipRequest])
+    .then(axios.spread((fiscalResult, citizenshipResult) => {
+      const fiscalData = fiscalResult.data;
+      const citizenshipData = citizenshipResult.data;
+
+      const combinedData = combineData(fiscalData, citizenshipData);
+
+      stateSettingCallback(view, office, combinedData);
+    }))
+    .catch(err => {
+      console.error(err);
+    });
+}
+
+const combineData = (fiscalData, citizenshipData) => {
+  const combinedData = [];
+
+  fiscalData.forEach(fiscalItem => {
+    const citizenshipItem = citizenshipData.find(item => item.fiscal_year === fiscalItem.fiscal_year);
+
+    if (citizenshipItem) {
+      const combinedItem = {
+        fiscal_year: fiscalItem.fiscal_year,
+        fiscal_granted: fiscalItem.granted,
+        fiscal_denied: fiscalItem.denied,
+        citizenship_granted: citizenshipItem.granted,
+        citizenship_denied: citizenshipItem.denied,
+        // Add more properties as needed
+      };
+
+      combinedData.push(combinedItem);
+    }
+  });
+
+  return combinedData;
+};
+*/
+
   const clearQuery = (view, office) => {
     dispatch(resetVisualizationQuery(view, office));
   };
