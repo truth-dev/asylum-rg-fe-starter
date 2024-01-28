@@ -51,6 +51,7 @@ function GraphWrapper(props) {
         break;
     }
   }
+
   async function updateStateWithNewData(
     years,
     view,
@@ -81,43 +82,6 @@ function GraphWrapper(props) {
                                    -- Mack 
     
     */
-    /*
-        if (office === 'all' || !office) {
-          axios
-            .get(`${apiUrl}/fiscalSummary`, {
-              //added correct url for fical summary
-              // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-              params: {
-                from: years[0],
-                to: years[1],
-              },
-            })
-            .then(result => {
-              stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-            })
-            .catch(err => {
-              console.error(err);
-            });
-        } else {
-          axios
-            .get(`${apiUrl}/citizenshipSummary`, {
-              // added correct url for citizenship summery
-              // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-              params: {
-                from: years[0],
-                to: years[1],
-                office: office,
-              },
-            })
-            .then(result => {
-              stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-            })
-            .catch(err => {
-              console.error(err);
-            });
-        }
-      }
-      */
 
     Promise.all([
       await axios.get(`${apiUrl}/fiscalSummary`, {
