@@ -118,6 +118,7 @@ function GraphWrapper(props) {
         }
       }
       */
+
     Promise.all([
       await axios.get(`${apiUrl}/fiscalSummary`, {
         params: {
@@ -136,11 +137,19 @@ function GraphWrapper(props) {
     ])
       .then(([fiscalCall, citizenCall]) => {
         // handle both requests and handle response together
-        const fiscalData = fiscalCall.data.yearResults;
+        // recieves an array containing the responses of both api calls
+        const fiscalData = fiscalCall.data;
         const citizenshipData = citizenCall.data;
-        const combinedData = [{ fiscalData, citizenshipData }];
+        const combinedData = [
+          {
+            yearResults: fiscalData.yearResults,
+            citizenshipResults: citizenshipData,
+          },
+        ];
+        //combines data from responses into one array
 
         stateSettingCallback(view, office, [combinedData][0]);
+        // pass all relevant data based on paramaters
       })
       .catch(err => {
         console.error(err);

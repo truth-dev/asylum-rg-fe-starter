@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import Plot from 'react-plotly.js';
 import { connect } from 'react-redux';
 import Table from './TableComponents/Table';
@@ -115,8 +115,12 @@ function CitizenshipMapAll(props) {
       />
       <label htmlFor="regionSelect">Select another region below</label>
       <select name="regionSelect" onChange={handleScopeChange}>
-        {geoScopeArray.map(a => {
-          return <option value={a}>{a.toUpperCase()}</option>;
+        {geoScopeArray.map((a, idx) => {
+          return (
+            <Fragment key={idx}>
+              <option value={a}>{a.toUpperCase()}</option>;
+            </Fragment>
+          );
         })}
       </select>
       <p>Table view</p>
