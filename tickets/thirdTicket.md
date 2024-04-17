@@ -17,6 +17,7 @@ Deliver the following:
 ### Relevant Guides
 
 The following guide from Auth0 will show you how to proceed from start to finish: `https://auth0.com/blog/complete-guide-to-react-user-authentication/`.
+**NOTE: Please make sure to use the older version and not to use the updated as it will be incompatible with the current asylumFE project**
 
 ### Guidance
 
