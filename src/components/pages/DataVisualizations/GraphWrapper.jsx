@@ -10,7 +10,8 @@ import YearLimitsSelect from './YearLimitsSelect';
 import ViewSelect from './ViewSelect';
 import axios from 'axios';
 import { resetVisualizationQuery } from '../../../state/actionCreators';
-import test_data from '../../../data/test_data.json';
+// import test_data from '../../../data/test_data.json';
+// comment out unused test data import
 import { colors } from '../../../styles/data_vis_colors';
 import ScrollToTopOnMount from '../../../utils/scrollToTopOnMount';
 
@@ -50,7 +51,16 @@ function GraphWrapper(props) {
         break;
     }
   }
-  function updateStateWithNewData(years, view, office, stateSettingCallback) {
+
+  async function updateStateWithNewData(
+    years,
+    view,
+    office,
+    stateSettingCallback
+  ) {
+    const apiUrl = 'https://hrf-asylum-be-b.herokuapp.com/cases';
+    // declare url once to make easier to manage and update
+
     /*
           _                                                                             _
         |                                                                                 |
@@ -73,39 +83,43 @@ function GraphWrapper(props) {
     
     */
 
-    if (office === 'all' || !office) {
-      axios
-        .get(process.env.REACT_APP_API_URI, {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
+    Promise.all([
+      await axios.get(`${apiUrl}/fiscalSummary`, {
+        params: {
+          from: years[0],
+          to: years[1],
+        },
+      }),
+
+      await axios.get(`${apiUrl}/citizenshipSummary`, {
+        params: {
+          from: years[0],
+          to: years[1],
+          office: office,
+        },
+      }),
+    ])
+      .then(([fiscalCall, citizenCall]) => {
+        // handle both requests and handle response together
+        // recieves an array containing the responses of both api calls
+        const fiscalData = fiscalCall.data;
+        const citizenshipData = citizenCall.data;
+        const combinedData = [
+          {
+            yearResults: fiscalData.yearResults,
+            citizenshipResults: citizenshipData,
           },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, test_data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    } else {
-      axios
-        .get(process.env.REACT_APP_API_URI, {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-            office: office,
-          },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, test_data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    }
+        ];
+        //combines data from responses into one array
+
+        stateSettingCallback(view, office, [combinedData][0]);
+        // pass all relevant data based on paramaters
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
+
   const clearQuery = (view, office) => {
     dispatch(resetVisualizationQuery(view, office));
   };

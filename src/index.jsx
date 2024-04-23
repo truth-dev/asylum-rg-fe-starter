@@ -7,12 +7,16 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import 'antd/dist/antd.less';
-import { NotFoundPage } from './components/pages/NotFound';
-import { LandingPage } from './components/pages/Landing';
+// import { createRoot } from 'react-dom/client';
+import Auth0ProviderWithHistory from './components/auth/auth0-provider-with-history';
+import { useAuth0 } from '@auth0/auth0-react';
 
+import 'antd/dist/antd.less';
+// import { NotFoundPage } from './components/pages/NotFound';
+import { LandingPage } from './components/pages/Landing';
 import { FooterContent, SubFooter } from './components/Layout/Footer';
 import { HeaderContent } from './components/Layout/Header';
+import  Profile  from '../src/components/auth/UserProfile';
 
 // import { TablePage } from './components/pages/Table';
 
@@ -25,20 +29,30 @@ import { colors } from './styles/data_vis_colors';
 
 const { primary_accent_color } = colors;
 
+
 const store = configureStore({ reducer: reducer });
+
 ReactDOM.render(
   <Router>
-    <Provider store={store}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </Provider>
+    <Auth0ProviderWithHistory>
+      <Provider store={store}>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </Provider>
+    </Auth0ProviderWithHistory>
   </Router>,
   document.getElementById('root')
 );
 
 export function App() {
   const { Footer, Header } = Layout;
+  const { isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+
   return (
     <Layout>
       <Header
@@ -54,7 +68,9 @@ export function App() {
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/graphs" component={GraphsContainer} />
-        <Route component={NotFoundPage} />
+        {/* <Route component={NotFoundPage} /> */}
+        <Route path='/profile' component={Profile} />
+
       </Switch>
       <Footer
         style={{
