@@ -10,11 +10,11 @@
 
 .header {
     background-color: @main-color;
-    display: flex;
+    display:flex;
     text-align: center;
     width: 100%;
-    height: 25vh;
-    margin-bottom: 5%;
+    height: 20vh;
+    margin-bottom: 10%;
 }
 
 .hrf-logo-img-container img {
@@ -41,47 +41,22 @@
     font-size: 1.2rem;
 }
 
-.graphs-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    margin: 5px 0;
-    gap: 300px;
-    transform: scale(0.7);
-}
-
-.graphs-section .special-class p {
-    margin-top: 60px;
-}
-
-.graph-item {
-    text-align: center;
-    font-family: 'acumin';
-    font-size: 1.9rem;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
+// .graphs-section {
+//  ADD THIS BACK IN WHEN YOU HAVE THE GRAPHS SECTION
+// }
 
 .view-more-data-btn-container {
-    height: 30px;
-    width: 300px;
+    height: 44px;
+    width: 180px;
     margin: 0 auto;
     text-align: center;
-    margin-bottom: 5%;
-    justify-content: space-between;
-    
+    margin-bottom: 10%;
 }
-
 
 .middle-section {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin-bottom: 10%;
 }
 
 .hrf-img {
@@ -100,47 +75,9 @@
     font-size: 1.4rem;
 }
 
-.bottom-section {
-    text-align: center;
-    margin: 10px;
-    font-family: 'acumin';
-}
-
-.bottom-section h1 {
-    font-size: 2.7rem;
-    font-weight: bold; 
-    margin-bottom: 5%;  
-}
-
-.data-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.first-data-point-container,
-.second-data-point-container,
-.third-data-point-container {
-    width: 30%; 
-    margin-bottom: 5%;
-    margin-top: 5%;
-    
-}
-
-.first-data-point-container h2,
-.second-data-point-container h2,
-.third-data-point-container h2 {
-    font-size: 2rem; 
-    font-weight: bold;
-}
-
-.first-data-point-container h3,
-.second-data-point-container h3,
-.third-data-point-container h3 {
-    font-size: 1rem; 
-}
-
-
+// .bottom-section {
+//      ADD THIS BACK IN WHEN YOU HAVE A BOTTOM SECTION
+// }
 
 .back-to-top {
     width: 8%;
@@ -158,30 +95,29 @@
 }
 
 .ant-btn:hover {
-    border-color: @secondary-color !important;
+    border-color: @secondary-color  !important;
 }
 
 @media @mobile-small {
     .header {
         height: 30vh;
-        display: block;
-        position: relative;
+       display: block;
+       position: relative;
     }
-
-    .hrf-logo-img-container {
-        height: fit-content;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 2% 2%;
+    .hrf-logo-img-container{
+       height:fit-content;
+       position: absolute;
+       top: 0;
+       left: 0;
+       margin: 2% 2%;
     }
 
     .hrf-logo-img-container img {
         height: 30px;
         width: 48px;
-
+       
     }
-
+   
     .header-text-container h1 {
         font-size: 1.5rem;
         padding-top: 5%;
@@ -234,7 +170,7 @@
         width: 85%;
         text-align: center;
         margin: 0 auto;
-
+       
     }
 
     .middle-section-text-container h3 {
@@ -243,7 +179,7 @@
     }
 
     .bottom-section h1 {
-        font-size: 20rem;
+        font-size: 2rem;
     }
 
     .data-container {
@@ -277,24 +213,23 @@
 @media @mobile-medium {
     .header {
         height: 20vh;
-        display: block;
-        position: relative;
+       display: block;
+       position: relative;
     }
-
-    .hrf-logo-img-container {
-        height: fit-content;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 2% 2%;
+    .hrf-logo-img-container{
+       height:fit-content;
+       position: absolute;
+       top: 0;
+       left: 0;
+       margin: 2% 2%;
     }
 
     .hrf-logo-img-container img {
         height: 30px;
         width: 48px;
-
+       
     }
-
+   
     .header-text-container h1 {
         font-size: 1.5rem;
         padding-top: 5%;
@@ -336,7 +271,7 @@
         background-color: @secondary-color;
         padding-top: 5%;
         text-align: center;
-
+        
     }
 
     .hrf-img {
@@ -346,7 +281,7 @@
 
     .middle-section-text-container {
         width: 85%;
-        text-align: center;
+       text-align: center;
         margin: 0 auto;
     }
 
@@ -393,23 +328,22 @@
 @media @mobile-large {
     .header {
         height: 20vh;
-        display: block;
-        position: relative;
+       display: block;
+       position: relative;
     }
-
-    .hrf-logo-img-container {
-        height: fit-content;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 2% 2%;
+    .hrf-logo-img-container{
+       height:fit-content;
+       position: absolute;
+       top: 0;
+       left: 0;
+       margin: 2% 2%;
     }
 
     .hrf-logo-img-container img {
         height: 30px;
         width: 48px;
     }
-
+   
     .header-text-container h1 {
         font-size: 1.5rem;
         padding-top: 5%;
@@ -460,7 +394,7 @@
 
     .middle-section-text-container {
         width: 85%;
-        text-align: center;
+       text-align: center;
         margin: 0 auto;
     }
 
@@ -502,30 +436,29 @@
         display: flex;
         flex-wrap: wrap;
     }
-
+    
 }
 
 @media @tablet-small {
     .header {
         height: 30vh;
-        display: block;
-        position: relative;
+       display: block;
+       position: relative;
     }
-
-    .hrf-logo-img-container {
-        height: fit-content;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 1% 1%;
+    .hrf-logo-img-container{
+       height:fit-content;
+       position: absolute;
+       top: 0;
+       left: 0;
+       margin: 1% 1%;
     }
 
     .hrf-logo-img-container img {
         height: 66px;
         width: 108px;
-
+       
     }
-
+   
     .header-text-container h1 {
         font-size: 2.5rem;
         padding-top: 5%;
@@ -623,24 +556,23 @@
 @media @tablet-large {
     .header {
         height: 30vh;
-        display: block;
-        position: relative;
+       display: block;
+       position: relative;
     }
-
-    .hrf-logo-img-container {
-        height: fit-content;
-        position: absolute;
-        top: 0;
-        left: 0;
-
+    .hrf-logo-img-container{
+       height:fit-content;
+       position: absolute;
+       top: 0;
+       left: 0;
+       
     }
 
     .hrf-logo-img-container img {
         height: 83px;
         width: 136px;
-
+       
     }
-
+   
     .header-text-container h1 {
         font-size: 3.5rem;
         padding-top: 5%;
@@ -693,7 +625,6 @@
         height: 232px;
         width: 450px;
     }
-
     .grant-rates-over-time-container p {
         font-size: 2.5rem;
     }
@@ -730,26 +661,22 @@
     }
 
     .bottom-section h1 {
-        font-size: 2rem; 
+        font-size: 3.5rem;
     }
 
     .data-container {
         display: flex;
-        justify-content: space-between;
         flex-wrap: wrap;
         width: 100%;
-        margin-top: 10px;
     }
 
     .first-data-point-container {
         width: 85%;
         margin-bottom: 5%;
     }
-
     .first-data-point-container h2 {
-        font-size: 3.5rem;
+       font-size: 3.5rem;
     }
-
     .first-data-point-container h3 {
         font-size: 1.5rem;
     }
@@ -758,27 +685,23 @@
         width: 85%;
         margin-bottom: 5%;
     }
-
     .second-data-point-container h2 {
         font-size: 3.5rem;
-    }
-
-    .second-data-point-container h3 {
-        font-size: 1.5rem;
-    }
+     }
+     .second-data-point-container h3 {
+         font-size: 1.5rem;
+     }
 
     .third-data-point-container {
         width: 85%;
         margin-bottom: 5%;
     }
-
     .third-data-point-container h2 {
         font-size: 3.5rem;
-    }
-
-    .third-data-point-container h3 {
-        font-size: 1.5rem;
-    }
+     }
+     .third-data-point-container h3 {
+         font-size: 1.5rem;
+     }
 
     .back-to-top {
         width: 35%;
@@ -810,7 +733,7 @@
     }
 
     .middle-section {
-        display: flex;
+        display:flex;
         width: 100%;
         justify-content: space-evenly;
         padding: 0 2%;
@@ -828,8 +751,8 @@
         padding: 0 2%;
     }
 
-
-    .first-data-point-container {
+   
+ .first-data-point-container {
         width: 23%;
     }
 
@@ -840,7 +763,7 @@
     .third-data-point-container {
         width: 23%;
     }
-
+    
     .back-to-top {
         width: 35%;
     }
