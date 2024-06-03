@@ -1,5 +1,4 @@
 import React from 'react';
-// ADD IMPORTS BACK FOR GRAPHS SECTION
 import GrantRatesByOfficeImg from '../../../styles/Images/bar-graph-no-text.png';
 import GrantRatesByNationalityImg from '../../../styles/Images/pie-chart-no-text.png';
 import GrantRatesOverTimeImg from '../../../styles/Images/line-graph-no-text.png';
@@ -7,7 +6,6 @@ import HrfPhoto from '../../../styles/Images/paper-stack.jpg';
 import '../../../styles/RenderLandingPage.less';
 import { Button } from 'antd';
 import { useHistory } from 'react-router-dom';
-// for the purposes of testing PageNav
 //import PageNav from '../../common/PageNav';
 
 function RenderLandingPage(props) {
@@ -56,6 +54,8 @@ function RenderLandingPage(props) {
             View the Data
           </Button>
         </div>
+
+        {/** added a download button */}
         <div className='download-data-btn-container'>
           <Button
             type="default"
@@ -85,8 +85,9 @@ function RenderLandingPage(props) {
         </div>
       </div>
       
-        {/* Bottom Section: Add code here for the graphs section for your first ticket */}
+        {/* Bottom Section */}
         <div className="bottom-section">
+          {/** disparity section */}
           <h1>Systemtic Disparity Insights</h1>
           <div className='insight-container'>
             <div className='insight-text-container-one'>
