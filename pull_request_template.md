@@ -1,4 +1,12 @@
 ## Description
+secondTicket-02: made changes to the graphwrapper file to access the api data for years and citizenmap 
+-- instead of fetch, i used an async function, create my own variables to whole the fiscal and citizenship data
+-- made a variable for the url, for smoother transition if url will be changed. 
+-- used the appropriate ends points to access the data for the page 
+-- updated the stateback call to use the variables to fetch the appropriate data. 
+
+
+
 firstTicket-01: changes to the graph section, added images to the appropriate sections 
 -- added the systamtic data to the bottom section -- updated the renderless page with the 
 appropritate css style to make it look like the example page 
@@ -8,11 +16,15 @@ appropritate css style to make it look like the example page
 
 #### Video Link
 
-[Loom Video] https://www.loom.com/share/e35cf3f5d024429b98ee5a7b6e047fab?sid=d9d274f5-4022-4ee3-89f1-e61b6071dfbf
+[Loom Video] Second Ticket: 
+
+[Loom Video] First ticket : https://www.loom.com/share/e35cf3f5d024429b98ee5a7b6e047fab?sid=d9d274f5-4022-4ee3-89f1-e61b6071dfbf
 
 #### Jira Link
 
-(https://taytenacious.atlassian.net/jira/core/projects/AS/board?atlOrigin=eyJpIjoiYTA5MGJhMWYxNzI5NGE4OThiODVkNTk3NTBiZWExNzQiLCJwIjoiaiJ9)
+[Jira Link] Second Ticket 
+ 
+[Jira Link ] First ticket:  (https://taytenacious.atlassian.net/jira/core/projects/AS/board?atlOrigin=eyJpIjoiYTA5MGJhMWYxNzI5NGE4OThiODVkNTk3NTBiZWExNzQiLCJwIjoiaiJ9)
 
 (Example below):
 
