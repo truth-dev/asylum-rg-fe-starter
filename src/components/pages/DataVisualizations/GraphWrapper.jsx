@@ -55,27 +55,6 @@ function GraphWrapper(props) {
     }
   }
  
-    /*
-          _                                                                             _
-        |                                                                                 |
-        |   Example request for once the `/summary` endpoint is up and running:           |
-        |                                                                                 |
-        |     `${url}/summary?to=2022&from=2015&office=ZLA`                               |
-        |                                                                                 |
-        |     so in axios we will say:                                                    |
-        |                                                                                 |     
-        |       axios.get(`${url}/summary`, {                                             |
-        |         params: {                                                               |
-        |           from: <year_start>,                                                   |
-        |           to: <year_end>,                                                       |
-        |           office: <office>,       [ <-- this one is optional! when    ]         |
-        |         },                        [ querying by `all offices` there's ]         |
-        |       })                          [ no `office` param in the query    ]         |
-        |                                                                                 |
-          _                                                                             _
-                                   -- Mack 
-    
-    */
 async function updateStateWithNewData( 
   years, 
   view, 
@@ -108,7 +87,7 @@ async function updateStateWithNewData(
     } else {
     const fis = await axios.get(`${URL}/fiscalSummary`, {
     
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
+          
           params: {
             from: years[0],
             to: years[1],
