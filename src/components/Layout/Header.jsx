@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import Logo from '../../styles/Images/WhiteLogo.png';
 import { colors } from '../../styles/data_vis_colors';
 
+import { useAuth0 } from '@auth0/auth0-react';
+import AuthButton from '../../auth/authButton';
+import Profile from '../../auth/profile';
+
 const { primary_accent_color } = colors;
 
 function HeaderContent() {
