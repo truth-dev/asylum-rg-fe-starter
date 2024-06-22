@@ -1,4 +1,9 @@
 ## Description
+
+thirdTicket-03: 
+
+
+
 secondTicket-02: made changes to the graphwrapper file to access the api data for years and citizenmap 
 -- instead of fetch, i used an async function, create my own variables to whole the fiscal and citizenship data
 -- made a variable for the url, for smoother transition if url will be changed. 
@@ -16,11 +21,15 @@ appropritate css style to make it look like the example page
 
 #### Video Link
 
+[Loom Video] Third Ticket: 
+
 [Loom Video] Second Ticket: https://www.loom.com/share/8ec8f981a95540c79446f62b30850e71?sid=8f6c3c6f-d09b-4630-8a51-35f3713d6115
 
 [Loom Video] First ticket : https://www.loom.com/share/e35cf3f5d024429b98ee5a7b6e047fab?sid=d9d274f5-4022-4ee3-89f1-e61b6071dfbf
 
 #### Jira Link
+
+[Jira Link] Third Ticket: 
 
 [Jira Link] Second Ticket: https://taytenacious.atlassian.net/jira/core/projects/AS/board?atlOrigin=eyJpIjoiMWYwNGUxOGMzNWQ3NDY2OGE4NjcwMDkwZDk2ZTQ2YTQiLCJwIjoiaiJ9
  
