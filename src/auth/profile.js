@@ -5,7 +5,7 @@ const Profile = () => {
     const {user, isAuthenticated, isLoading} = useAuth0();
 
     if(isLoading) {
-        return <div>...Loading</div>
+        return <div>...Loading</div>;
     }
 
     return (
@@ -15,7 +15,7 @@ const Profile = () => {
                 <p>{user.email}</p>
             </div>
         )
-    )
-}
+    );
+};
 
 export default Profile;

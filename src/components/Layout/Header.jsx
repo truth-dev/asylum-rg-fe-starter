@@ -8,9 +8,12 @@ import { useAuth0 } from '@auth0/auth0-react';
 import AuthButton from '../../auth/authButton';
 import Profile from '../../auth/profile';
 
+import {Route, Redirect} from 'react-router-dom';
+
 const { primary_accent_color } = colors;
 
 function HeaderContent() {
+  const { isAuthenticated } = useAuth0();
   return (
     <div
       style={{
@@ -26,12 +29,22 @@ function HeaderContent() {
         </a>
       </div>
       <div>
+        <AuthButton />
+      </div>
+      <div>
         <Link to="/" style={{ color: '#E2F0F7', paddingRight: '75px' }}>
           Home
         </Link>
         <Link to="/graphs" style={{ color: '#E2F0F7' }}>
           Graphs
         </Link>
+
+        {isAuthenticated && <Link to="/profile">Profile</Link>}
+
+        <Route path='/profile'>
+        {isAuthenticated ? <Profile /> : <Redirect to='/' />}
+        </Route>
+
       </div>
     </div>
   );
