@@ -1,21 +1,21 @@
 import React from 'react';
-import { useAuth0} from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
+import './auth.css';
 
 
 const AuthButton = () => {
-    const {loginRedirect, logout, isAuthenticated} = useAuth0();
+    const {loginWithRedirect, isAuthenticated} = useAuth0();
 
     return (
        <div className='login'>
         {!isAuthenticated  && (
-            <>
-            <button onClick={() => loginRedirect()}>Log in</button>
-            <button onClick={() => loginRedirect()}>Sign up</button>
             
-            </>
+        <button className='auth-btn' onClick={() => loginWithRedirect()}>Log in</button>
+            
+            
+            
         )}
-        {isAuthenticated && <button onClick={() => logout({returnTo: window.location.origin})}>Log out</button>}
-       </div>
+     </div> 
        
     );
 };

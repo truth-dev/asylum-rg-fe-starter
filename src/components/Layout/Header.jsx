@@ -6,9 +6,10 @@ import { colors } from '../../styles/data_vis_colors';
 
 import { useAuth0 } from '@auth0/auth0-react';
 import AuthButton from '../../auth/authButton';
-import Profile from '../../auth/profile';
+import Logout from '../../auth/logout';
 
-import {Route, Redirect} from 'react-router-dom';
+
+
 
 const { primary_accent_color } = colors;
 
@@ -28,9 +29,7 @@ function HeaderContent() {
           <Image width={100} src={Logo} preview={false} alt="HRF logo white" />
         </a>
       </div>
-      <div>
-        <AuthButton />
-      </div>
+   
       <div>
         <Link to="/" style={{ color: '#E2F0F7', paddingRight: '75px' }}>
           Home
@@ -38,14 +37,21 @@ function HeaderContent() {
         <Link to="/graphs" style={{ color: '#E2F0F7' }}>
           Graphs
         </Link>
-
-        {isAuthenticated && <Link to="/profile">Profile</Link>}
-
-        <Route path='/profile'>
-        {isAuthenticated ? <Profile /> : <Redirect to='/' />}
-        </Route>
+        <AuthButton />
+        <Logout />
+        {isAuthenticated && (
+          <Link to="/profile" style={{ color: '#E2F0F7'}}>
+            Profile
+          </Link>
+          
+        )}
+        
 
       </div>
+      <div>
+       
+        </div>
+   
     </div>
   );
 }

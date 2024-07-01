@@ -7,6 +7,9 @@ import {
   Switch,
 } from 'react-router-dom';
 
+import {Auth0Provider} from '@auth0/auth0-react';
+import  Profile  from './auth/profile';
+
 import 'antd/dist/antd.less';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LandingPage } from './components/pages/Landing';
@@ -40,6 +43,12 @@ ReactDOM.render(
 export function App() {
   const { Footer, Header } = Layout;
   return (
+    <Auth0Provider
+    domain={'dev-s6geob7upopv1sg5.us.auth0.com'}
+    clientId={'fp0BN4c26VjjbxdmFAfLmDy6dha7gOhV'}
+    redirectUri={window.location.origin}
+
+    >
     <Layout>
       <Header
         style={{
@@ -54,7 +63,9 @@ export function App() {
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/graphs" component={GraphsContainer} />
+        <Route path="/profile" component={Profile} />
         <Route component={NotFoundPage} />
+
       </Switch>
       <Footer
         style={{
@@ -73,5 +84,6 @@ export function App() {
         <SubFooter />
       </Footer>
     </Layout>
+    </Auth0Provider>
   );
 }
