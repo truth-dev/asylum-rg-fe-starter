@@ -7,8 +7,9 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import {Auth0Provider} from '@auth0/auth0-react';
+import { Auth0Provider } from '@auth0/auth0-react';
 import  Profile  from './auth/profile';
+import  ProtectedRoute from './auth/protect';
 
 import 'antd/dist/antd.less';
 import { NotFoundPage } from './components/pages/NotFound';
@@ -28,6 +29,16 @@ import { colors } from './styles/data_vis_colors';
 
 const { primary_accent_color } = colors;
 
+const domain ='dev-s6geob7upopv1sg5.us.auth0.com';
+const clientId ='u3gZxVVKTrVbDq2uvhRMkmYLoBikQNMx';
+
+console.log("domain:", domain);
+console.log("clientId:", clientId);
+
+if(!domain || !clientId) {
+  console.error("missing auth0 domain or client id in src/index.jsx");
+}
+
 const store = configureStore({ reducer: reducer });
 ReactDOM.render(
   <Router>
@@ -44,9 +55,13 @@ export function App() {
   const { Footer, Header } = Layout;
   return (
     <Auth0Provider
-    domain={'dev-s6geob7upopv1sg5.us.auth0.com'}
-    clientId={'fp0BN4c26VjjbxdmFAfLmDy6dha7gOhV'}
-    redirectUri={window.location.origin}
+    domain={domain}
+    clientId={clientId}
+    authorizationParams={{
+      redirect_uri: window.location.origin + '/profile',
+    }}
+    useRefreshTokens={true}
+    cacheLocation={'localstorage'}
 
     >
     <Layout>
@@ -62,8 +77,8 @@ export function App() {
       </Header>
       <Switch>
         <Route path="/" exact component={LandingPage} />
-        <Route path="/graphs" component={GraphsContainer} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/graphs"  component={GraphsContainer} />
+        <ProtectedRoute path="/profile"  exact component={Profile} />
         <Route component={NotFoundPage} />
 
       </Switch>

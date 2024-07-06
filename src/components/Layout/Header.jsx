@@ -6,7 +6,7 @@ import { colors } from '../../styles/data_vis_colors';
 
 import { useAuth0 } from '@auth0/auth0-react';
 import AuthButton from '../../auth/authButton';
-import Logout from '../../auth/logout';
+import Profile from '../../auth/profile';
 
 
 
@@ -29,7 +29,7 @@ function HeaderContent() {
           <Image width={100} src={Logo} preview={false} alt="HRF logo white" />
         </a>
       </div>
-   
+      
       <div>
         <Link to="/" style={{ color: '#E2F0F7', paddingRight: '75px' }}>
           Home
@@ -37,19 +37,18 @@ function HeaderContent() {
         <Link to="/graphs" style={{ color: '#E2F0F7' }}>
           Graphs
         </Link>
-        <AuthButton />
-        <Logout />
-        {isAuthenticated && (
-          <Link to="/profile" style={{ color: '#E2F0F7'}}>
-            Profile
-          </Link>
-          
-        )}
-        
-
-      </div>
-      <div>
+        { isAuthenticated && (
+      <Link to="/profile" style={{color:'#E2F0F7'}} >
+       </Link>
        
+    )}
+    <AuthButton />
+   
+      </div>
+     
+      <div>
+      
+   
         </div>
    
     </div>
